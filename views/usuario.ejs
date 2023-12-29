@@ -1,0 +1,22 @@
+<!-- usuario.ejs -->
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página do Usuário</title>
+</head>
+<body>
+    <%- include("topo") %>
+  <h1>Bem-vindo, Usuário!</h1>
+  <!-- Menu de opções para o usuário -->
+<div class="menu">
+  <button onclick="redirectTo('/informacoes')">Informações Pessoais</button><br><br><BR>
+  <button onclick="redirectTo('/registrarponto')">Registrar Ponto</button><br><br><BR>
+  <button onclick="redirectTo('/feriasausencias')">Férias / Ausências</button>
+</div>
+
+ 
+  <%- include("rodape") %>
+</body>
+</html>

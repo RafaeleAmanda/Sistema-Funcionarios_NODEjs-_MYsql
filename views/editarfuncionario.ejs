@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Funcionário</title>
+</head>
+<body>
+    <%- include("topo") %>
+  <h2>Editar Funcionário</h2>
+
+  
+<form id="funcionarioForm" action='/atualizarfuncionario/<%= funcionario.id %>' method="post">
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" name="nome" value="<%= funcionario.nome %>" required><br>
+
+  <label for="cargo">Cargo:</label>
+  <input type="text" id="cargo" name="cargo" value="<%= funcionario.cargo %>" required><br>
+
+  <label for="departamento">Departamento:</label>
+  <input type="text" id="departamento" name="departamento" value="<%= funcionario.departamento %>" required><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" value="<%= funcionario.email %>" required><br>
+
+  <button type="submit"  onclick="return confirm('Tem certeza que deseja alterar o Funcionario?');">Atualizar Funcionário</button>
+
+</form>
+
+  <%- include("rodape") %>
+</body>
+</html>

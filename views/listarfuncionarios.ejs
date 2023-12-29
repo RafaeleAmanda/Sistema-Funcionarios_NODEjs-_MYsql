@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listar Funcionários</title>
+</head>
+<body>
+  <%- include("topo") %>
+  <h2>Lista de Funcionários</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Cargo</th>
+        <th>Departamento</th>
+        <th>Email</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% funcionarios.forEach(funcionario => { %>
+        <tr>
+          <td><%= funcionario.id %></td>
+          <td><%= funcionario.nome %></td>
+          <td><%= funcionario.cargo %></td>
+          <td><%= funcionario.departamento %></td>
+          <td><%= funcionario.email %></td>
+          <td>
+            <a href='/editarfuncionario?id=<%= funcionario.id %>'> Alterar </a>
+
+              <input type="hidden" name="funcionarioData" value="<%= JSON.stringify(funcionario) %>">
+              
+            </form>
+            <form action="/excluirfuncionario/<%= funcionario.id %>" method="post">
+              <button type="submit" onclick="return confirm('Tem certeza?')">Excluir</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <%- include("rodape") %>
+</body>
+</html>
+
+
+

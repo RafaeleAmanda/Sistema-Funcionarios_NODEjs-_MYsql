@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Funcionários</title>
+</head>
+<body>
+  <div>
+    <header style="background-color: lightgreen; padding: 10px; text-align: center;">
+      <h1>Sistema de Funcionários</h1>
+    </header>
+  </div>
+
+  <h1>Gerenciamento de Funcionários</h1>
+
+  <!-- Formulário para criar um novo funcionário -->
+  <form id="funcionarioForm" action='/criarfuncionarios' method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required><br>
+
+    <label for="cargo">Cargo:</label>
+    <input type="text" id="cargo" name="cargo" required><br>
+
+    <label for="departamento">Departamento:</label>
+    <input type="text" id="departamento" name="departamento" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <button type="button" onclick="inserirFuncionario()">Inserir Funcionário</button>
+  </form>
+  <div>
+    <footer style="background-color: lightgreen; padding: 10px; text-align: center; position: fixed; bottom: 0; width: 100%;">
+      <p>&copy;<script>document.write(new Date().getFullYear())</script> Sistema de Funcionários. Todos os direitos reservados.</p>
+    </footer>
+  </div>
+
+  <!-- Mensagem de sucesso -->
+  <div id="mensagemSucesso" style="color: green; margin-top: 10px;"></div>
+
+  <script>
+    async function inserirFuncionario() {
+      const nome = document.getElementById('nome').value;
+      const cargo = document.getElementById('cargo').value;
+      const departamento = document.getElementById('departamento').value;
+      const email = document.getElementById('email').value;
+
+      try {
+        const response = await fetch('http://127.0.0.1:3000/criarfuncionarios', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ nome, cargo, departamento, email })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Erro ao inserir funcionário: ${response.status} - ${response.statusText}`);
+        }
+
+        const novoFuncionario = await response.json();
+        console.log('Funcionário inserido:', novoFuncionario);
+
+        // Limpa os campos do formulário
+        document.getElementById('nome').value = '';
+        document.getElementById('cargo').value = '';
+        document.getElementById('departamento').value = '';
+        document.getElementById('email').value = '';
+
+        // Adiciona a mensagem de sucesso
+        document.getElementById('mensagemSucesso').innerText = 'Funcionário inserido com sucesso!';
+
+        // Adiciona um alerta (opcional)
+        alert('Funcionário inserido com sucesso!');
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  </script>
+  
+</body>
+</html>
+
+  </script>
+</body>
+</html>
+
+

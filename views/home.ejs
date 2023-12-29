@@ -1,0 +1,46 @@
+<!-- views/home.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Principal</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 50px;
+    }
+
+    .option {
+      width: 200px;
+      height: 100px;
+      background-color: lightgreen;
+      text-align: center;
+      line-height: 100px;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      background-color: darkgreen;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+    <%- include("topo") %>
+  <h2>Bem-vindo à Página Principal</h2>
+  
+  <div class="container">
+    <div class="option" onclick="redirectTo('/administrador')">Administrador</div>
+    <div class="option" onclick="redirectTo('/usuario')">Usuário</div>
+  </div>
+  <%- include("rodape") %>
+  <script>
+    function redirectTo(route) {
+      window.location.href = route;
+    }
+  </script>
+</body>
+</html>
